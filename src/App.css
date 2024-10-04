@@ -19,11 +19,11 @@ body {
 }
 
 .fullview.hidenav {
-  width: 100%;
+  width: 100%; 
 }
 
 .hidenav {
-  padding: 0;
+  padding: 16px 36px;
 }
 
 .reduced.shownav {
