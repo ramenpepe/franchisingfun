@@ -20,13 +20,16 @@ import {
   WalletDisconnectButton,
   WalletMultiButton
 } from '@solana/wallet-adapter-react-ui';
-
+import { useConnection, useWallet } from '@solana/wallet-adapter-react';
+import { WalletNotConnectedError } from '@solana/wallet-adapter-base';
+import { Keypair, SystemProgram, Transaction } from '@solana/web3.js';
+import { Mint } from './components/Mint';
 require('@solana/wallet-adapter-react-ui/styles.css');
 
 
 function App() {
 
-  const [activeItem, setActiveItem] = useState('Dashboard');
+  const [activeItem, setActiveItem] = useState('Marketplace');
   const [curract, setCurract] = useState('...');
   const [isLoading, setIsLoading] = useState(false);
   const [loadComplete, setLoadComplete] = useState(true);
@@ -34,7 +37,23 @@ function App() {
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [intervalId, setIntervalId] = useState(null);
   const network = WalletAdapterNetwork.Devnet;
+
   
+
+const Minti = () =>{
+  const { publicKey } = useWallet();
+  const mintToken = async () => {
+    console.log(publicKey);
+    
+  };
+  return (<div>
+  <h1 style={{ color: 'white' }}>
+    
+  <button onClick={mintToken}>mintToken</button><br/>
+                  {publicKey ? `Wallet is connected: ${publicKey?.toBase58()}` : `No wallet connected.`}
+                  </h1>
+  </div>)
+}
 
   // You can also provide a custom RPC endpoint.
   const endpoint = useMemo(() => clusterApiUrl(network), [network]);
@@ -84,7 +103,8 @@ function App() {
     }
   };
 
-
+ 
+  
   useEffect(() => {
    // verifySession();
 
@@ -104,14 +124,16 @@ function App() {
           <div className="App">
           <ConnectionProvider endpoint={endpoint}>
             <WalletProvider wallets={wallets} autoConnect>
-               
+          
                 <WalletModalProvider >
-                  <div style={{ width: '100%', right: '10px' , textAlign: 'right' }}>
-                    <WalletMultiButton style={{  top: '10px', left: '10px' }}/>
-                    <WalletDisconnectButton style={{ width: '150px', top: '0px', left: '0px' }} />
+                  <div style={{  textAlign: 'right' }}>
+                    <WalletMultiButton />
+                    <WalletDisconnectButton />
+                    
+                    
                     </div>
-                    { /* Your app's components go here, nested within the context providers. */ }
-                </WalletModalProvider>
+
+               
           
           {isLoading &&
             <div class={`load-bg ${loadComplete ? '' : 'complete'}`}>
@@ -126,9 +148,18 @@ function App() {
 setIsNavVisible={setIsNavVisible} handleNavItemClick={handleNavItemClick} />
             <div className={`${panelIsVisible ? 'reduced' : 'fullview'} ${isNavVisible ? 'shownav' : 'hidenav'}`} >
            
-              {activeItem === 'Assets' && <div>
-                <div>    </div>
+              {activeItem === 'Marketplace' && <div>
+                <div>    marketplace of projects</div>
               </div>}
+
+              {activeItem === 'Launch' && <div>
+                <div>    
+                  <Mint/>
+
+
+                </div>
+              </div>}
+
               {activeItem === 'Contracts' && <div>
    
                
@@ -144,7 +175,7 @@ setIsNavVisible={setIsNavVisible} handleNavItemClick={handleNavItemClick} />
           
             </Routes>
           </Router>
-          
+          </WalletModalProvider>
             </WalletProvider>
         </ConnectionProvider>
           </div>

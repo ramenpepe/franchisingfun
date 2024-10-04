@@ -6,8 +6,11 @@
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@fortawesome/fontawesome-free": "^6.6.0",
+    "@metaplex-foundation/mpl-token-metadata": "^3.2.1",
     "@mui/icons-material": "^5.16.7",
     "@mui/material": "^5.15.2",
+    "@solana-developers/helpers": "^2.5.6",
+    "@solana/spl-token": "^0.4.8",
     "@solana/web3.js": "^1.95.3",
     "assert": "^2.1.0",
     "browserify-zlib": "^0.2.0",
@@ -33,7 +36,7 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject"
-},
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
