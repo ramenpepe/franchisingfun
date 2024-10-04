@@ -7,12 +7,13 @@ import Loader from "./components/Loader"
 import RightPanel from "./components/RightPanel";
 import {theme, GlobalCss} from './theme-mn';
 import { ThemeProvider, CssBaseline } from '@mui/material';
+import {
+  SolflareWalletAdapter,
+  /* ... other adapters ... */
+} from '@solana/wallet-adapter-wallets';
 
-import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
-import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
-import { UnsafeBurnerWalletAdapter } from '@solana/wallet-adapter-wallets';
-import { WalletModalProvider, WalletMultiButton, WalletDisconnectButton } from '@solana/wallet-adapter-react-ui';
-import { clusterApiUrl } from '@solana/web3.js';
+
+
 
 require('@solana/wallet-adapter-react-ui/styles.css');
 
@@ -27,6 +28,14 @@ function App() {
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [intervalId, setIntervalId] = useState(null);
 
+  const wallets = useMemo(
+    () => [
+      new SolflareWalletAdapter(),
+      // ... other adapters ...
+    ],
+    []
+  ); 
+  
   //const apiUrl = process.env.REACT_APP_API_URL;
   const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
  
@@ -66,14 +75,6 @@ function App() {
   };
 
 
-  const network = WalletAdapterNetwork.Devnet;  // Set the network (can be 'devnet', 'testnet', or 'mainnet-beta')
-  const endpoint = useMemo(() => clusterApiUrl(network), [network]);  // Cluster API URL
-
-  const wallets = useMemo(() => [
-    new UnsafeBurnerWalletAdapter(),
-    // Add more wallet adapters if needed (like Phantom, Solflare, etc.)
-  ], [network]);
-  
   useEffect(() => {
    // verifySession();
 
@@ -88,10 +89,10 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
        <CssBaseline />   <GlobalCss />
-       <ConnectionProvider endpoint={endpoint}>
-      <WalletProvider wallets={wallets} autoConnect>
-        <WalletModalProvider>
+       
+     
           <div className="App">
+  
           {isLoading &&
             <div class={`load-bg ${loadComplete ? '' : 'complete'}`}>
              <Loader/>
@@ -123,14 +124,10 @@ setIsNavVisible={setIsNavVisible} handleNavItemClick={handleNavItemClick} />
           
             </Routes>
           </Router>
-            <WalletMultiButton />  {/* This adds the wallet connect button */}
-            <WalletDisconnectButton />  {/* This adds a button to disconnect */}
-            {/* Your app's other components go here */}
+          
+          
           </div>
-        </WalletModalProvider>
-      </WalletProvider>
-    </ConnectionProvider>
-
+          
         </ThemeProvider>
        
   );
