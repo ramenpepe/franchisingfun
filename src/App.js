@@ -12,8 +12,14 @@ import {
   /* ... other adapters ... */
 } from '@solana/wallet-adapter-wallets';
 
-
-
+import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
+import { clusterApiUrl } from '@solana/web3.js';
+import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
+import {
+  WalletModalProvider,
+  WalletDisconnectButton,
+  WalletMultiButton
+} from '@solana/wallet-adapter-react-ui';
 
 require('@solana/wallet-adapter-react-ui/styles.css');
 
@@ -27,7 +33,11 @@ function App() {
   const [panelIsVisible, setPanelIsVisible] = useState(true);
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [intervalId, setIntervalId] = useState(null);
+  const network = WalletAdapterNetwork.Devnet;
+  
 
+  // You can also provide a custom RPC endpoint.
+  const endpoint = useMemo(() => clusterApiUrl(network), [network]);
   const wallets = useMemo(
     () => [
       new SolflareWalletAdapter(),
@@ -35,7 +45,7 @@ function App() {
     ],
     []
   ); 
-  
+
   //const apiUrl = process.env.REACT_APP_API_URL;
   const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
  
@@ -92,7 +102,17 @@ function App() {
        
      
           <div className="App">
-  
+          <ConnectionProvider endpoint={endpoint}>
+            <WalletProvider wallets={wallets} autoConnect>
+               
+                <WalletModalProvider >
+                  <div style={{ width: '100%', right: '10px' , textAlign: 'right' }}>
+                    <WalletMultiButton style={{  top: '10px', left: '10px' }}/>
+                    <WalletDisconnectButton style={{ width: '150px', top: '0px', left: '0px' }} />
+                    </div>
+                    { /* Your app's components go here, nested within the context providers. */ }
+                </WalletModalProvider>
+          
           {isLoading &&
             <div class={`load-bg ${loadComplete ? '' : 'complete'}`}>
              <Loader/>
@@ -125,7 +145,8 @@ setIsNavVisible={setIsNavVisible} handleNavItemClick={handleNavItemClick} />
             </Routes>
           </Router>
           
-          
+            </WalletProvider>
+        </ConnectionProvider>
           </div>
           
         </ThemeProvider>
