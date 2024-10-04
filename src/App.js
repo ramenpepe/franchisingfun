@@ -136,7 +136,7 @@ setIsNavVisible={setIsNavVisible} handleNavItemClick={handleNavItemClick} />
             <div className={`${panelIsVisible ? 'reduced' : 'fullview'} ${isNavVisible ? 'shownav' : 'hidenav'}`} >
            
               {activeItem === 'Marketplace' && <div>
-                <div>    marketplace of projects</div>
+                <h1>    marketplace of projects like pdf</h1>
               </div>}
 
               {activeItem === 'Launch' && <div>
@@ -147,10 +147,18 @@ setIsNavVisible={setIsNavVisible} handleNavItemClick={handleNavItemClick} />
                 </div>
               </div>}
 
-              {activeItem === 'Contracts' && <div>
-   
-               
+              {activeItem === 'Portfolio' && <div>
+                <h1>Portfolio</h1>
+                
               </div>}
+              {activeItem === 'Governance' && <div>
+                <h1>Governance</h1>
+               
+   </div>}
+   {activeItem === 'Community' && <div>
+   <h1>Community</h1>
+               
+   </div>}
 
             </div>
             <RightPanel  panelIsVisible={panelIsVisible} setPanelIsVisible={setPanelIsVisible} />

@@ -34,23 +34,7 @@ const RightPanel = ({ panelIsVisible, setPanelIsVisible, handleLogout }) => {
           
      
         </div>
-        <Button
-          variant="contained"
-          onClick={handleLogout}
-          sx={{
-            width: '100%',
-            marginTop: 'auto',
-            backgroundColor: 'transparent',
-            color: '#000',
-            '&:hover': {
-              backgroundColor: 'var(--button-background)',
-              color : '#FFF'
-            },
-          }}
-          startIcon={<ExitToAppIcon />}
-        >
-          Logout
-        </Button>
+       
       </Drawer>
 
       { ( // Hide the toggle button on mobile

@@ -24,9 +24,9 @@ const LeftNavBar = ({ handleNavItemClick, activeItem, setActiveItem, isNavVisibl
   };
 
   const navItems = [
-    { label: 'Market', value: 'Dashboard', icon: ReactIcons.FaDesktop },
+    { label: 'Market', value: 'Marketplace', icon: ReactIcons.FaDesktop },
     { label: 'Launch', value: 'Launch', icon: TokenIcon },
-    { label: 'Portfolio', value: 'Portfolio', icon: ReactIcons.FaBook },
+    { label: 'My Portfolio', value: 'Portfolio', icon: ReactIcons.FaBook },
     { label: 'Governance', value: 'Governance', icon: ReactIcons.FaFileContract },
     { label: 'Community', value: 'Community', icon: ReactIcons.FaCog }
     

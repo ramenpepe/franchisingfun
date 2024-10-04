@@ -40,24 +40,7 @@ body {
 
 
 /* login */
-
-.login-container {
-  position: relative;
-  max-width: 600px;
-  margin: 10% auto;
-  padding: 0px;
-  display: flex;
-  background: transparent;
-  border-radius: 2px;
-  color: rgba(0, 0, 0, 0.87);
-  overflow: visible;
-}
-.login-container h1{
-  color:var(--contrast-text-color);
-}
-.login-container  .MuiPaper-root h1{
-  color:var(--text-color);
-}
+h1{ color:white; }
 .backdrop {
   height: 100vh;
   width: 100vw;

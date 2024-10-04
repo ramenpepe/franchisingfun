@@ -1,11 +1,12 @@
 //const fs = require('fs'); // Add this line to require the 'fs' module
 
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
-const  { createMint, mintTo, getOrCreateAssociatedTokenAccount } = require('@solana/spl-token');
+//const  { createMint, mintTo, getOrCreateAssociatedTokenAccount } = require('@solana/spl-token');
 
 const { getKeypairFromEnvironment, getExplorerLink }=require("@solana-developers/helpers");
-const { createCreateMetadataAccountV3Instruction }=require("@metaplex-foundation/mpl-token-metadata");
+//const { createCreateMetadataAccountV3Instruction }=require("@metaplex-foundation/mpl-token-metadata");
 const BN = require('bn.js'); // Import BN from the 'bn.js' library
+
 const {
     Connection,
     PublicKey,
@@ -17,8 +18,6 @@ const {
 } = require('@solana/web3.js');
 
 export const Mint =() =>{
-
-
 
 // Load the wallet's secret key from users.json
  // Update this line
@@ -32,6 +31,9 @@ const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
 // Replace with your mint address if it already exists
 const mintAddress = null;
 
+
+async function mintToken() {}
+/**
 async function addMetadata(tokenMintAccount) {
  
     const TOKEN_METADATA_PROGRAM_ID = new PublicKey("metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s");
@@ -103,7 +105,6 @@ const tokenMintLink = getExplorerLink(
 
 console.log(`✅ Look at the token mint again: ${tokenMintLink} !`);
 }
-  
 async function mintToken() {
     try {
         // Create a new token mint if needed
@@ -156,7 +157,7 @@ async function mintToken() {
 
    // await addMetadata(mint.toBase58());
 }
- 
+  */
 
 //mintToken();
 
