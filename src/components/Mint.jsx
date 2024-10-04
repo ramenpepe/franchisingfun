@@ -1,7 +1,11 @@
 //const fs = require('fs'); // Add this line to require the 'fs' module
 
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
+const  { createMint, mintTo, getOrCreateAssociatedTokenAccount } = require('@solana/spl-token');
 
+const { getKeypairFromEnvironment, getExplorerLink }=require("@solana-developers/helpers");
+const { createCreateMetadataAccountV3Instruction }=require("@metaplex-foundation/mpl-token-metadata");
+const BN = require('bn.js'); // Import BN from the 'bn.js' library
 const {
     Connection,
     PublicKey,
@@ -11,20 +15,17 @@ const {
     Transaction,
     sendAndConfirmTransaction,
 } = require('@solana/web3.js');
-const  { createMint, mintTo, getOrCreateAssociatedTokenAccount } = require('@solana/spl-token');
 
-const { getKeypairFromEnvironment, getExplorerLink }=require("@solana-developers/helpers");
-const { createCreateMetadataAccountV3Instruction }=require("@metaplex-foundation/mpl-token-metadata");
+export const Mint =() =>{
 
 
-const BN = require('bn.js'); // Import BN from the 'bn.js' library
 
 // Load the wallet's secret key from users.json
  // Update this line
- export const Mint =({wallet}) =>{
+
     const { publicKey } = useWallet();
 //const wallet = Keypair.fromSecretKey(Uint8Array.from(secretKeyArray)); // Use the secret key array
-
+const wallet = publicKey;
 // Configure connection to the Solana cluster
 const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
 
@@ -102,7 +103,7 @@ const tokenMintLink = getExplorerLink(
 
 console.log(`✅ Look at the token mint again: ${tokenMintLink} !`);
 }
-    
+  
 async function mintToken() {
     try {
         // Create a new token mint if needed
@@ -155,9 +156,17 @@ async function mintToken() {
 
    // await addMetadata(mint.toBase58());
 }
+ 
 
+//mintToken();
 
-mintToken();
+return (<div>
+    <h1 style={{ color: 'white' }}>
+      
+    <button onClick={mintToken}>mintToken</button><br/>
+                    {publicKey ? `Wallet is connected: ${publicKey?.toBase58()}` : `No wallet connected.`}
+                    </h1>
+    </div>)
  }
 
 // Run the mint function

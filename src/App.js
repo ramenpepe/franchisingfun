@@ -40,20 +40,7 @@ function App() {
 
   
 
-const Minti = () =>{
-  const { publicKey } = useWallet();
-  const mintToken = async () => {
-    console.log(publicKey);
-    
-  };
-  return (<div>
-  <h1 style={{ color: 'white' }}>
-    
-  <button onClick={mintToken}>mintToken</button><br/>
-                  {publicKey ? `Wallet is connected: ${publicKey?.toBase58()}` : `No wallet connected.`}
-                  </h1>
-  </div>)
-}
+
 
   // You can also provide a custom RPC endpoint.
   const endpoint = useMemo(() => clusterApiUrl(network), [network]);
@@ -154,7 +141,7 @@ setIsNavVisible={setIsNavVisible} handleNavItemClick={handleNavItemClick} />
 
               {activeItem === 'Launch' && <div>
                 <div>    
-                  <Mint/>
+                  <Mint />
 
 
                 </div>
