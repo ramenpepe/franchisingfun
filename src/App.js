@@ -23,7 +23,10 @@ import {
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 import { WalletNotConnectedError } from '@solana/wallet-adapter-base';
 import { Keypair, SystemProgram, Transaction } from '@solana/web3.js';
+import Instructions from './components/Instructions'; // Import Instructions component
+
 import { Mint } from './components/Mint';
+
 require('@solana/wallet-adapter-react-ui/styles.css');
 
 
@@ -36,6 +39,9 @@ function App() {
   const [panelIsVisible, setPanelIsVisible] = useState(true);
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [intervalId, setIntervalId] = useState(null);
+  const [modalOpen, setModalOpen] = useState(true); // State to control modal visibility
+
+
   const network = WalletAdapterNetwork.Devnet;
 
   
@@ -113,7 +119,7 @@ function App() {
             <WalletProvider wallets={wallets} autoConnect>
           
                 <WalletModalProvider >
-                  <div style={{  textAlign: 'right' }}>
+                  <div style={{  textAlign: 'right' , height:'48px' , overflow:'hidden' }}>
                     <WalletMultiButton />
                     <WalletDisconnectButton />
                     
@@ -170,6 +176,7 @@ setIsNavVisible={setIsNavVisible} handleNavItemClick={handleNavItemClick} />
           
             </Routes>
           </Router>
+          <Instructions open={modalOpen} onClose={() => setModalOpen(false)} />
           </WalletModalProvider>
             </WalletProvider>
         </ConnectionProvider>
