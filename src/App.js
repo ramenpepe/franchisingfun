@@ -41,7 +41,7 @@ function App() {
   const [intervalId, setIntervalId] = useState(null);
   const [modalOpen, setModalOpen] = useState(true); // State to control modal visibility
 
-
+  const { publicKey } = useWallet();
   const network = WalletAdapterNetwork.Devnet;
 
   
@@ -119,9 +119,12 @@ function App() {
             <WalletProvider wallets={wallets} autoConnect>
           
                 <WalletModalProvider >
-                  <div style={{  textAlign: 'right' , height:'48px' , overflow:'hidden' }}>
-                    <WalletMultiButton />
-                    <WalletDisconnectButton />
+                  <div style={{  textAlign: 'right'  }}>
+                  {publicKey ? (
+    <WalletDisconnectButton />
+) : (
+    <WalletMultiButton />
+)}
                     
                     
                     </div>
