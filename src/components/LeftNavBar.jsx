@@ -24,13 +24,11 @@ const LeftNavBar = ({ handleNavItemClick, activeItem, setActiveItem, isNavVisibl
   };
 
   const navItems = [
-    { label: 'Dashboard', value: 'Dashboard', icon: ReactIcons.FaDesktop },
-    { label: 'Build', value: 'Build', icon: ReactIcons.FaProjectDiagram },
-    { label: 'Assets', value: 'Assets', icon: TokenIcon },
-    { label: 'Template', value: 'Template', icon: ReactIcons.FaBook },
-    { label: 'Contracts', value: 'Contracts', icon: ReactIcons.FaFileContract },
-    { label: 'Integration', value: 'Config', icon: ReactIcons.FaCog },
-    { label: 'Accounts', value: 'Accounts', icon: ReactIcons.FaUser },
+    { label: 'Market', value: 'Dashboard', icon: ReactIcons.FaDesktop },
+    { label: 'Launch', value: 'Launch', icon: TokenIcon },
+    { label: 'Portfolio', value: 'Portfolio', icon: ReactIcons.FaBook },
+    { label: 'Governance', value: 'Governance', icon: ReactIcons.FaFileContract },
+    { label: 'Community', value: 'Community', icon: ReactIcons.FaCog }
     
     
   ];
