@@ -5,7 +5,7 @@ import {
   TransactionInstruction,
   sendAndConfirmTransaction,
   Transaction,
-} from '@solana/web3.js';
+} from '@solana/web3.js'; 
 const { getKeypairFromEnvironment, getExplorerLink }=require("@solana-developers/helpers");
 
 const TOKEN_PROGRAM_ID = new PublicKey('TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA');
