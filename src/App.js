@@ -25,7 +25,7 @@ import { WalletNotConnectedError } from '@solana/wallet-adapter-base';
 import { Keypair, SystemProgram, Transaction } from '@solana/web3.js';
 import Instructions from './components/Instructions'; // Import Instructions component
 
-import { Mint } from './components/Mint';
+import Mint from './components/Mint';
 
 require('@solana/wallet-adapter-react-ui/styles.css');
 
